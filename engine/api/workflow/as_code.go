@@ -80,11 +80,10 @@ func UpdateAsCode(ctx context.Context, db *gorp.DbMap, store cache.Store, proj *
 				Message:    "",
 			},
 		},
-		User: sdk.User{
-			Username: u.GetUsername(),
-			Email:    u.GetEmail(),
-		},
 	}
+	ope.User.Username = u.GetUsername()
+	ope.User.Fullname = u.GetFullname()
+	ope.User.Email = u.GetEmail()
 
 	if app.RepositoryStrategy.ConnectionType == "ssh" {
 		ope.URL = repo.SSHCloneURL
